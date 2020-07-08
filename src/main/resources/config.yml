@@ -1,0 +1,20 @@
+file-system:
+  lang-file: messages.yml
+  envoy-folder: crates
+envoy:
+  region: envoy-drop
+  duration: 600
+  spawning:
+    players-required: 4
+    ratio: .25
+    round-up: true
+warning-times:
+  - 600
+  - 300
+  - 180
+  - 60
+  - 10
+  - 3
+  - 2
+  - 1
+  

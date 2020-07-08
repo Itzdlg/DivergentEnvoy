@@ -1,0 +1,23 @@
+enabled: true
+broadcast-on-claim: true
+block:
+  material: beacon
+  drop-height: 8
+  hologram: "&a(!) BASIC CRATE"
+rewards:
+  diamond:
+    chance: .5
+    items:
+      - diamond:
+        min-amount: 32
+        max-amount: 48
+        name: "&aBasic Envoy Reward"
+        lore:
+          - "&7Diamonds from a Basic Envoy"
+    commands:
+      - "broadcast {player} has received {reward.diamond.amount} from a basic envoy drop!"
+  fly-voucher:
+    chance: .2
+    commands:
+      - "givevoucher {player} fly"
+      - "broadcast {player} has received a Fly Voucher from a basic envoy drop!"

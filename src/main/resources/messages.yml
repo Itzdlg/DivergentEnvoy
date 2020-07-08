@@ -1,0 +1,3 @@
+prefix: &8[&6&lDivergent&b&lEnvoy&8]
+time-until-spawn: "&7There are {time} left until the next envoy drop!"
+envoy-claim-broadcast: "&7{player} has just claimed an envoy drop from pvp arena!"
