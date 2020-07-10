@@ -1,14 +1,13 @@
-file-system:
-  lang-file: messages.yml
-  envoy-folder: crates
 envoy:
+  world: world
   region: envoy-drop
-  duration: 600
+  cooldown: 60 # In minutes
+  duration: 600 # In seconds
   spawning:
     players-required: 4
     ratio: .25
     round-up: true
-warning-times:
+warning-times: # In seconds
   - 600
   - 300
   - 180
@@ -17,4 +16,5 @@ warning-times:
   - 3
   - 2
   - 1
-  
+world-broadcast-list:
+  - "*" # Use * for all worlds and just the world name for a specific world

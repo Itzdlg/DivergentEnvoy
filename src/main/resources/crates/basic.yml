@@ -1,5 +1,7 @@
-enabled: true
+friendly-name: Basic Crate
 broadcast-on-claim: true
+reward-count: 2
+chance: .7
 block:
   material: beacon
   drop-height: 8
@@ -8,16 +10,24 @@ rewards:
   diamond:
     chance: .5
     items:
-      - diamond:
+      diamond:
+        type: diamond
         min-amount: 32
         max-amount: 48
         name: "&aBasic Envoy Reward"
         lore:
           - "&7Diamonds from a Basic Envoy"
+        enchants:
+          - "DAMAGE_ALL 10"
     commands:
-      - "broadcast {player} has received {reward.diamond.amount} from a basic envoy drop!"
+      - "say {player} has received {item.diamond.amount} diamonds from a basic envoy drop!"
   fly-voucher:
     chance: .2
     commands:
       - "givevoucher {player} fly"
-      - "broadcast {player} has received a Fly Voucher from a basic envoy drop!"
+      - "say {player} has received a Fly Voucher from a basic envoy drop!"
+  speed:
+    chance: .7
+    effects:
+      - "SPEED 5 for 60"
+      - "JUMP 10 for 150"

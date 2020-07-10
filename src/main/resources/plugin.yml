@@ -1,0 +1,4 @@
+main: me.schooltests.divergentenvoy.DivergentEnvoy
+name: DivergentEnvoy
+version: "1.0"
+load: postworld

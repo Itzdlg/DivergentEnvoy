@@ -6,9 +6,9 @@ import me.schooltests.divergentenvoy.util.BaseConfig;
 import java.util.List;
 
 public class PluginConfig extends BaseConfig<DivergentEnvoy> {
-    public String LANG_FILE;
-    public String ENVOY_FOLDER;
+    public String ENVOY_DROP_WORLD;
     public String ENVOY_DROP_REGION;
+    public int ENVOY_COOLDOWN;
     public int ENVOY_DURATION;
     public int PLAYERS_REQUIRED;
     public double ENVOY_DROP_RATIO;
@@ -17,16 +17,13 @@ public class PluginConfig extends BaseConfig<DivergentEnvoy> {
 
     public PluginConfig(DivergentEnvoy plugin) {
         super(plugin, "config");
-        loadConfigFile();
     }
 
     public void postLoad() {
-        setTargetSection("file-system");
-        LANG_FILE = getStringOrDefault("lang-file");
-        ENVOY_FOLDER = getStringOrDefault("envoy-folder");
-
         setTargetSection("envoy");
+        ENVOY_DROP_WORLD = getStringOrDefault("world");
         ENVOY_DROP_REGION = getStringOrDefault("region");
+        ENVOY_COOLDOWN = getIntOrDefault("cooldown");
         ENVOY_DURATION = getIntOrDefault("duration");
 
         setTargetSection("envoy.spawning");

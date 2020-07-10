@@ -7,6 +7,7 @@ public class MessagesConfig extends BaseConfig<DivergentEnvoy> {
     public MessagesConfig(DivergentEnvoy plugin) {
         super(plugin, "messages");
     }
-
     public void postLoad() { }
+
+
 }
