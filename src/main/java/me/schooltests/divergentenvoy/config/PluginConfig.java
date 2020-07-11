@@ -2,7 +2,9 @@ package me.schooltests.divergentenvoy.config;
 
 import me.schooltests.divergentenvoy.DivergentEnvoy;
 import me.schooltests.divergentenvoy.util.BaseConfig;
+import me.schooltests.divergentenvoy.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PluginConfig extends BaseConfig<DivergentEnvoy> {
@@ -23,17 +25,18 @@ public class PluginConfig extends BaseConfig<DivergentEnvoy> {
         setTargetSection("envoy");
         ENVOY_DROP_WORLD = getStringOrDefault("world");
         ENVOY_DROP_REGION = getStringOrDefault("region");
-        ENVOY_COOLDOWN = getIntOrDefault("cooldown");
-        ENVOY_DURATION = getIntOrDefault("duration");
+        ENVOY_COOLDOWN = TimeUtil.getSecondsFromTimestamp(getStringOrDefault("cooldown"));
+        ENVOY_DURATION = TimeUtil.getSecondsFromTimestamp(getStringOrDefault("duration"));
 
         setTargetSection("envoy.spawning");
         PLAYERS_REQUIRED = getIntOrDefault("players-required");
         ENVOY_DROP_RATIO = getDoubleOrDefault("ratio");
         RATIO_ROUND_UP = getBooleanOrDefault("round-up");
 
-        setTargetSection("warning-times");
-        WARNING_TIMES = getIntegerListOrDefault("warning-times");
-
         setTargetSection(null);
+        WARNING_TIMES = new ArrayList<>();
+        for (String timestamp : getStringListOrDefault("warning-times")) {
+            WARNING_TIMES.add(TimeUtil.getSecondsFromTimestamp(timestamp));
+        }
     }
 }

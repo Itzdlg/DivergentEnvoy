@@ -12,39 +12,37 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Base configuration file for all types of configurations
+ *
+ * @author Itzdlg
+ * @param <T> Plugin
+ */
 public abstract class BaseConfig <T extends JavaPlugin> {
     private T plugin;
-    private String fileName = "config.yml";
-    private String path = "";
-    private String defaultResourceName = "";
+    private String fileName;
+    private String path;
+    private String defaultResourceName;
     private String targetSection = "";
     private final YamlConfiguration defaultConfig = new YamlConfiguration();
     private final YamlConfiguration yamlConfig = new YamlConfiguration();
 
     public BaseConfig(T plugin) {
-        this.plugin = plugin;
-        loadConfigFile();
+        this(plugin, "config.yml", "", "config.yml");
     }
 
     public BaseConfig(T plugin, String fileName) {
-        this.plugin = plugin;
-        this.fileName = fileName.endsWith(".yml") ? fileName : fileName + ".yml";
-        this.defaultResourceName = this.fileName;
-        loadConfigFile();
+        this(plugin, fileName, "", fileName);
     }
 
     public BaseConfig(T plugin, String fileName, String path) {
-        this.plugin = plugin;
-        this.fileName = fileName.endsWith(".yml") ? fileName : fileName + ".yml";
-        this.defaultResourceName = this.fileName;
-        this.path = path;
-        loadConfigFile();
+        this(plugin, fileName, path, fileName);
     }
 
     public BaseConfig(T plugin, String fileName, String path, String defaultResourceName) {
         this.plugin = plugin;
         this.fileName = fileName.endsWith(".yml") ? fileName : fileName + ".yml";
-        this.defaultResourceName = defaultResourceName;
+        this.defaultResourceName = defaultResourceName.endsWith(".yml") ? defaultResourceName : defaultResourceName + ".yml";
         this.path = path;
         loadConfigFile();
     }
@@ -119,6 +117,11 @@ public abstract class BaseConfig <T extends JavaPlugin> {
         return result.isEmpty() ? defaultConfig.getIntegerList(targetSection + node) : result;
     }
 
+    public List<String> getStringListOrDefault(String node) {
+        List<String> result = yamlConfig.getStringList(targetSection + node);
+        return result.isEmpty() ? defaultConfig.getStringList(targetSection + node) : result;
+    }
+
     public double getDoubleOrDefault(String node) {
         return yamlConfig.getDouble(targetSection + node, defaultConfig.getDouble(targetSection + node, 0));
     }
@@ -126,10 +129,10 @@ public abstract class BaseConfig <T extends JavaPlugin> {
     public boolean getBooleanOrDefault(String node) {
         return yamlConfig.getBoolean(targetSection + node, defaultConfig.getBoolean(targetSection + node, true));
     }
-}
 
-class ConfigurationException extends RuntimeException {
-    public ConfigurationException(String message) {
-        super(message);
+    public static class ConfigurationException extends RuntimeException {
+        public ConfigurationException(String message) {
+            super(message);
+        }
     }
 }

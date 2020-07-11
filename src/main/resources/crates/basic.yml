@@ -5,7 +5,7 @@ chance: .7
 block:
   material: beacon
   drop-height: 8
-  hologram: "&a(!) BASIC CRATE"
+  hologram: ""
 rewards:
   diamond:
     chance: .5
@@ -19,15 +19,21 @@ rewards:
           - "&7Diamonds from a Basic Envoy"
         enchants:
           - "DAMAGE_ALL 10"
-    commands:
-      - "say {player} has received {item.diamond.amount} diamonds from a basic envoy drop!"
-  fly-voucher:
-    chance: .2
-    commands:
-      - "givevoucher {player} fly"
-      - "say {player} has received a Fly Voucher from a basic envoy drop!"
   speed:
     chance: .7
     effects:
-      - "SPEED 5 for 60"
-      - "JUMP 10 for 150"
+      - "SPEED 5 for 1m"
+      - "JUMP 10 for 2m, 30s"
+  wool:
+    items:
+      redwool:
+        type: wool
+        durability: 14
+        min-amount: 48
+        max-amount: 64
+        name: "&cRED WOOL"
+      blackwool:
+        type: wool
+        durability: 15
+        amount: 24
+        name: "&0BLACK WOOL"

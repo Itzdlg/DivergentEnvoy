@@ -2,6 +2,7 @@ package me.schooltests.divergentenvoy.envoy;
 
 import me.schooltests.divergentenvoy.DivergentEnvoy;
 import me.schooltests.divergentenvoy.util.BaseConfig;
+import me.schooltests.divergentenvoy.util.TimeUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -15,7 +16,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,8 +40,12 @@ public class EnvoyDrop {
     private Location dropLocation;
 
     public EnvoyDrop(DivergentEnvoy plugin, String id) {
+        this(plugin, id, "crates/basic.yml");
+    }
+
+    public EnvoyDrop(DivergentEnvoy plugin, String id, String defaultResourceName) {
         this.id = id;
-        this.envoyDropConfig = new BaseConfig<DivergentEnvoy>(plugin, id, "crates", "crates/basic.yml") {
+        this.envoyDropConfig = new BaseConfig<DivergentEnvoy>(plugin, id, "crates", defaultResourceName) {
             @Override
             public void postLoad() {
                 FRIENDLY_NAME = getStringOrDefault("friendly-name");
@@ -133,8 +137,9 @@ public class EnvoyDrop {
                     if (yml.contains(itemSection + "amount")) amount = yml.getInt(itemSection + "amount");
                     else amount = ThreadLocalRandom.current().nextInt(min, max + 1);
 
-                    ItemStack itemStack = new ItemStack(Material.matchMaterial(yml.getString(itemSection + "type")), amount);
-                    ItemMeta meta = itemStack.getItemMeta();
+                    final ItemStack itemStack = new ItemStack(Material.matchMaterial(yml.getString(itemSection + "type")), amount);
+                    if (yml.contains(itemSection + "durability")) itemStack.setDurability((short) yml.getInt(itemSection + "durability"));
+                    final ItemMeta meta = itemStack.getItemMeta();
 
                     if (yml.contains(itemSection + "name"))
                         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', yml.getString(itemSection + "name")));
@@ -148,9 +153,9 @@ public class EnvoyDrop {
 
                     if (yml.contains(itemSection + "enchants")) {
                         for (String ymlEnchant : yml.getStringList(itemSection + "enchants")) {
-                            String name = ymlEnchant.split(" ")[0];
-                            int power = Integer.parseInt(ymlEnchant.split(" ")[1]);
-                            Enchantment ench = Enchantment.getByName(name.toUpperCase().trim());
+                            final String name = ymlEnchant.split(" ")[0];
+                            final int power = Integer.parseInt(ymlEnchant.split(" ")[1]);
+                            final Enchantment ench = Enchantment.getByName(name.toUpperCase().trim());
                             if (ench != null) meta.addEnchant(ench, power, true);
                         }
                     }
@@ -162,10 +167,10 @@ public class EnvoyDrop {
 
             if (yml.contains(rewardSection + "effects")) {
                 for (String ymlEffect : yml.getStringList(rewardSection + "effects")) {
-                    String name = ymlEffect.split(" ")[0];
-                    int amp = Integer.parseInt(ymlEffect.split(" ")[1]);
-                    int seconds = Integer.parseInt(ymlEffect.split(" for ")[1]);
-                    PotionEffectType type = PotionEffectType.getByName(name.toLowerCase());
+                    final String name = ymlEffect.split(" ")[0];
+                    final int amp = Integer.parseInt(ymlEffect.split(" ")[1]);
+                    final int seconds = TimeUtil.getSecondsFromTimestamp(ymlEffect.split(" for ")[1]);
+                    final PotionEffectType type = PotionEffectType.getByName(name.toLowerCase());
                     if (type != null) reward.add(new PotionEffect(type, seconds * 20, amp, true, true));
                 }
             }

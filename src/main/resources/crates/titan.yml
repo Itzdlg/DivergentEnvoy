@@ -1,0 +1,41 @@
+friendly-name: Basic Crate
+broadcast-on-claim: true
+reward-count: 2
+chance: .3
+block:
+  material: ender_chest
+  drop-height: 8
+  hologram: "&c(!) TITAN CRATE"
+rewards:
+  sword:
+    chance: .2
+    items:
+      dsword:
+        type: diamond_sword
+        amount: 1
+        name: "&cTitan Sword"
+        lore:
+          - "&7Titan Sword from a Titan Envoy Crate"
+        enchants:
+          - "DAMAGE_ALL 25"
+          - "KNOCKBACK 10"
+  creative:
+    chance: .1
+    commands:
+      - "gamemode c {player}"
+  speed:
+    chance: .3
+    effects:
+      - "SPEED 5 for 1m"
+      - "JUMP 10 for 2m, 30s"
+  kbstick:
+    chance: .5
+    items:
+      kbstick:
+        type: stick
+        amount: 1
+        name: "&cTitan Stick"
+        lore:
+          - "&7Titan Stick from a Titan Envoy Crate"
+        enchants:
+          - "KNOCKBACK 25"

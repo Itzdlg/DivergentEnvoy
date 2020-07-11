@@ -1,3 +1,14 @@
+# Message prefix (not for all messages)
 prefix: "&8[&6&lDivergent&b&lEnvoy&8]"
-time-until-spawn: "&7There are {time} left until the next envoy drop!"
-envoy-claim-broadcast: "&7{player} has just claimed an envoy drop from pvp arena!"
+
+# Broadcasted messages
+time-until-spawn: "&7There is &6{time} &7left until the next envoy drop!" # Accepted: {time}
+envoy-claim-broadcast: "&6{player} &7has just claimed an envoy drop from the PVP Area!" # Accepted: {player}, {display_name}
+envoy-begin-broadcast: "&7An envoy has just started at the PVP Arena!"
+envoy-end-broadcast: "&7The envoy has ended. Thank you for participating!"
+
+# Command messages
+command-help-message: "&6/envoy start [duration (ex. 2m,30s)] [world] [region] [# of crates] &7- Starts an envoy\n&6/envoy end &7- Stops the active envoy\n&6/envoy reload &7- Reloads configuration and message files\n\n&7[optional] <required>"
+command-invalid-arg: "&7Please enter a valid {type} for &6{arg}&7!" # Accepted: {arg}, {type}
+command-started-envoy: "&7You have started an envoy in &6{world} &7at region &6{region} &7that lasts &6{duration}&7!" # Accepted: {world}, {region}, {duration}
+command-no-active-envoy: "&7There is not currently an envoy in progress!"

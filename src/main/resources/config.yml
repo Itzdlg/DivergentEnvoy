@@ -1,20 +1,18 @@
 envoy:
   world: world
   region: envoy-drop
-  cooldown: 60 # In minutes
-  duration: 600 # In seconds
+  cooldown: 1h
+  duration: 10m
   spawning:
     players-required: 4
     ratio: .25
     round-up: true
-warning-times: # In seconds
-  - 600
-  - 300
-  - 180
-  - 60
-  - 10
-  - 3
-  - 2
-  - 1
-world-broadcast-list:
-  - "*" # Use * for all worlds and just the world name for a specific world
+warning-times: # ex: 1h, 30m (MUST USE COMMA-SPACE)
+  - 10m
+  - 5m
+  - 3m
+  - 1m
+  - 10s
+  - 3s
+  - 2s
+  - 1s
