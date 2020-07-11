@@ -1,6 +1,6 @@
 friendly-name: Basic Crate
-broadcast-on-claim: true
-reward-count: 2
+broadcast-on-claim: false
+reward-count: 1
 chance: .7
 block:
   material: beacon
